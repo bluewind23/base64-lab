@@ -1,0 +1,537 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title data-lang-key="title">Base64 Encode/Decode - Free Online Tool</title>
+  <meta name="description" data-lang-key="description" content="Fast, secure, client-side Base64 encoder and decoder. Convert text and files to Base64 and back. Supports URL-safe, MIME formats, and advanced features like live mode and file downloads." />
+  
+  <meta property="og:title" content="Advanced Base64 Encoder & Decoder" />
+  <meta property="og:description" content="Fast, secure, client-side tool for all your Base64 needs." />
+  <meta property="og:type" content="website" />
+  <meta property="og:image" content="https://example.com/og-image.png" />
+  <meta property="og:url" content="https://example.com" />
+  
+  <link rel="icon" type="image/x-icon" href="favicon.ico">
+
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header>
+    <div class="header-content">
+      <div class="header-text">
+        <h1 data-lang-key="header_title">Base64 Encoder & Decoder</h1>
+        <div class="tagline-container">
+          <p class="tagline" data-lang-key="header_tagline">Fast, secure, and feature-rich client-side tool</p>
+          <div class="spacer"></div>
+          <div class="header-actions">
+            <select id="languageSelector" class="language-selector">
+              <option value="en">English</option>
+              <option value="ko">한국어</option>
+              <option value="ja">日本語</option>
+              <option value="zh">中文</option>
+              <option value="es">Español</option>
+              <option value="it">Italiano</option>
+              <option value="fr">Français</option>
+            </select>
+            <button class="base-icon-btn icon-btn" id="fullscreenBtn" aria-label="Toggle Fullscreen" data-tooltip="Toggle Fullscreen">
+              <svg class="icon-expand" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3"></path>
+              </svg>
+              <svg class="icon-shrink" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M8 3v3a2 2 0 0 1-2 2H3m18 0h-3a2 2 0 0 1-2-2V3m0 18v-3a2 2 0 0 1 2-2h3M3 16h3a2 2 0 0 1 2 2v3"></path>
+              </svg>
+            </button>
+            <button class="base-icon-btn icon-btn" id="shortcutsBtn" aria-label="Keyboard Shortcuts" data-tooltip="Keyboard Shortcuts (?)">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect>
+                <line x1="8" y1="21" x2="16" y2="21"></line>
+                <line x1="12" y1="17" x2="12" y2="21"></line>
+                <path d="M7 9h4v4H7z"></path>
+                <path d="M13 9h4"></path>
+                <path d="M13 13h4"></path>
+              </svg>
+            </button>
+            <button class="base-icon-btn icon-btn" id="settingsBtn" aria-label="Settings" data-tooltip="Open Settings (Ctrl+,)">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M12.22 2h-.44a2 2 0 0 0-2 2v.18a2 2 0 0 1-1 1.73l-.43.25a2 2 0 0 1-2 0l-.15-.08a2 2 0 0 0-2.73.73l-.22.38a2 2 0 0 0 .73 2.73l.15.1a2 2 0 0 1 1 1.72v.51a2 2 0 0 1-1 1.74l-.15.09a2 2 0 0 0-.73 2.73l.22.38a2 2 0 0 0 2.73.73l.15-.08a2 2 0 0 1 2 0l.43.25a2 2 0 0 1 1 1.73V20a2 2 0 0 0 2 2h.44a2 2 0 0 0 2-2v-.18a2 2 0 0 1 1-1.73l.43-.25a2 2 0 0 1 2 0l.15.08a2 2 0 0 0 2.73-.73l-.22-.39a2 2 0 0 0-.73-2.73l-.15-.08a2 2 0 0 1-1-1.74v-.5a2 2 0 0 1 1-1.74l.15-.09a2 2 0 0 0 .73-2.73l-.22-.38a2 2 0 0 0-2.73-.73l-.15.08a2 2 0 0 1-2 0l-.43-.25a2 2 0 0 1-1-1.73V4a2 2 0 0 0-2-2z"></path>
+                <circle cx="12" cy="12" r="3"></circle>
+              </svg>
+            </button>
+            <button class="base-icon-btn theme-toggle" id="themeToggle" aria-label="Toggle dark mode" data-tooltip="Toggle Theme">
+              <svg class="sun-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="12" cy="12" r="5"></circle>
+                <line x1="12" y1="1" x2="12" y2="3"></line>
+                <line x1="12" y1="21" x2="12" y2="23"></line>
+                <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                <line x1="1" y1="12" x2="3" y2="12"></line>
+                <line x1="21" y1="12" x2="23" y2="12"></line>
+                <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+              </svg>
+              <svg class="moon-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+              </svg>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main class="container">
+    <div class="tab-navigation">
+      <button class="tab active" data-tab="text" data-lang-key="tab_text">Text ↔ Base64</button>
+      <button class="tab" data-tab="file-encode" data-lang-key="tab_file_encode">File → Base64</button>
+      <button class="tab" data-tab="file-decode" data-lang-key="tab_file_decode">Base64 → File</button>
+      <button class="tab" data-tab="url" data-lang-key="tab_url">URL Safe</button>
+      <button class="tab" data-tab="hash" data-lang-key="tab_hash">Hash Generator</button>
+    </div>
+
+    <div class="tab-content active" id="text-tab">
+      <div class="input-section">
+        <div class="section-header">
+          <label for="inputText" data-lang-key="input">Input</label>
+          <div class="input-info">
+            <span id="charCount" data-lang-key="char_count" data-base-text="characters">0 characters</span>
+            <button class="icon-btn-text" id="pasteBtn" title="Paste from clipboard" data-lang-key="paste">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"></path>
+                <rect x="8" y="2" width="8" height="4" rx="1" ry="1"></rect>
+              </svg>
+            </button>
+          </div>
+        </div>
+        <textarea id="inputText" placeholder="Enter text or Base64 string here..." data-lang-key="placeholder_input" spellcheck="false"></textarea>
+      </div>
+
+      <div class="action-section">
+        <div class="button-group">
+          <button id="encodeBtn" class="primary-btn" data-tooltip="Encode Text (Ctrl+Enter)">
+            <span data-lang-key="encode">Encode</span>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+              <polyline points="22 4 12 14.01 9 11.01"></polyline>
+            </svg>
+          </button>
+          <button id="decodeBtn" class="primary-btn" data-tooltip="Decode Text (Ctrl+Shift+Enter)">
+            <span data-lang-key="decode">Decode</span>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M21.44 11.05l-9.19 9.19a6 6 0 0 1-8.49-8.49l8.57-8.57A4 4 0 1 1 18 8.84l-8.59 8.59a2 2 0 0 1-2.83-2.83l.76-.75"></path>
+            </svg>
+          </button>
+          <button id="swapBtn" class="secondary-btn" data-tooltip="Swap Input & Output (Ctrl+Shift+S)">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <polyline points="17 1 21 5 17 9"></polyline>
+              <polyline points="7 23 3 19 7 15"></polyline>
+              <path d="M21 5H9"></path>
+              <path d="M3 19h12"></path>
+            </svg>
+          </button>
+          <button id="clearBtn" class="secondary-btn" data-tooltip="Clear All (Ctrl+K)" data-lang-key="reset">Clear</button>
+        </div>
+        
+        <div class="options">
+          <label class="checkbox-label">
+            <input type="checkbox" id="liveMode" />
+            <span data-lang-key="live_mode">Live mode</span>
+          </label>
+          <label class="checkbox-label">
+            <input type="checkbox" id="wrapOutput" checked />
+            <span data-lang-key="wrap_output">Wrap output</span>
+          </label>
+          <label class="checkbox-label">
+            <input type="checkbox" id="showImagePreview" checked />
+            <span data-lang-key="show_image_preview">Show image preview</span>
+          </label>
+          <label class="checkbox-label">
+            <input type="checkbox" id="decompressGzip" />
+            <span data-lang-key="decompress_gzip">Auto decompress Gzip</span>
+          </label>
+          <div class="format-selector">
+            <label for="base64Format" data-lang-key="option_b64_format">Base64 Format:</label>
+            <select id="base64Format">
+              <option value="standard" data-lang-key="format_standard">Standard (RFC 4648)</option>
+              <option value="mime" data-lang-key="format_mime">MIME (RFC 2045)</option>
+              <option value="url-safe" data-lang-key="format_url_safe">URL-Safe (RFC 4648)</option>
+            </select>
+          </div>
+        </div>
+      </div>
+
+      <div class="output-section">
+        <div class="section-header">
+          <label data-lang-key="output">Output</label>
+          <div class="output-actions">
+            <button class="icon-btn-text" id="copyBtn" title="Copy to clipboard">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+              </svg>
+              <span data-lang-key="copy">Copy</span>
+            </button>
+            <button class="icon-btn-text" id="downloadBtn" title="Download as file">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                <polyline points="7 10 12 15 17 10"></polyline>
+                <line x1="12" y1="15" x2="12" y2="3"></line>
+              </svg>
+              <span data-lang-key="download">Download</span>
+            </button>
+          </div>
+        </div>
+        
+        <div class="output-tabs">
+          <button class="output-tab active" data-format="text">Text</button>
+          <button class="output-tab" data-format="hex">Hex</button>
+          <button class="output-tab" data-format="binary">Binary</button>
+          <button class="output-tab" data-format="utf16">UTF-16</button>
+          <button class="output-tab" data-format="analysis" data-lang-key="output_tab_analysis">Analysis</button>
+        </div>
+        
+        <div class="output-content">
+          <textarea id="outputText" readonly placeholder="Output will appear here..." data-lang-key="placeholder_output" spellcheck="false"></textarea>
+          <div id="imagePreview" class="image-preview hidden">
+            <div class="image-preview-header">
+              <span data-lang-key="image_preview_title">Image Preview</span>
+            </div>
+            <div class="image-preview-content">
+              <img id="previewImage" alt="Decoded image preview" />
+            </div>
+          </div>
+          <div id="outputHex" class="output-view hidden">
+            <textarea readonly placeholder="Hex representation will appear here..." data-lang-key="placeholder_hex" spellcheck="false"></textarea>
+          </div>
+          <div id="outputBinary" class="output-view hidden">
+            <textarea readonly placeholder="Binary representation will appear here..." data-lang-key="placeholder_binary" spellcheck="false"></textarea>
+          </div>
+          <div id="outputUtf16" class="output-view hidden">
+            <textarea readonly placeholder="UTF-16 representation will appear here..." data-lang-key="placeholder_utf16" spellcheck="false"></textarea>
+          </div>
+          <div id="outputAnalysis" class="output-view hidden">
+            <div class="analysis-content">
+              <div class="analysis-item">
+                <label data-lang-key="analysis_length">Length:</label>
+                <span id="analysisLength">0</span>
+              </div>
+              <div class="analysis-item">
+                <label data-lang-key="analysis_size">Size:</label>
+                <span id="analysisSize">0 bytes</span>
+              </div>
+              <div class="analysis-item">
+                <label data-lang-key="analysis_encoding">Encoding:</label>
+                <span id="analysisEncoding" data-lang-key="analysis_unknown">Unknown</span>
+              </div>
+              <div class="analysis-item">
+                <label data-lang-key="analysis_charset">Character Set:</label>
+                <span id="analysisCharset">ASCII</span>
+              </div>
+              <div class="analysis-item">
+                <label data-lang-key="analysis_line_breaks">Line Breaks:</label>
+                <span id="analysisLineBreaks" data-lang-key="analysis_none">None</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="tab-content" id="file-encode-tab">
+      <div class="file-upload-area" id="fileDropZone">
+        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+          <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+          <polyline points="17 8 12 3 7 8"></polyline>
+          <line x1="12" y1="3" x2="12" y2="15"></line>
+        </svg>
+        <p><span data-lang-key="drop_file_text">Drop file here or </span><button class="link-btn" id="fileSelectBtn" data-lang-key="btn_browse">browse</button></p>
+        <p class="file-hint" data-lang-key="drop_file_hint">Maximum file size: 10MB</p>
+        <input type="file" id="fileInput" hidden />
+      </div>
+      <div id="fileInfo" class="file-info hidden"></div>
+      
+      <div class="file-options">
+        <label class="checkbox-label">
+          <input type="checkbox" id="generateDataUri" />
+          <span data-lang-key="generate_data_uri">Generate Data URI</span>
+        </label>
+        <label class="checkbox-label">
+          <input type="checkbox" id="compressGzip" />
+          <span data-lang-key="compress_gzip">Compress with Gzip</span>
+        </label>
+      </div>
+      
+      <div id="fileOutput" class="file-output hidden">
+        <div class="section-header">
+          <label data-lang-key="label_b64_output">Base64 Output</label>
+          <div class="output-actions">
+            <button class="icon-btn-text" id="copyFileBtn">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+              </svg>
+              <span data-lang-key="copy">Copy</span>
+            </button>
+          </div>
+        </div>
+        <textarea id="fileOutputText" readonly spellcheck="false"></textarea>
+      </div>
+    </div>
+    
+    <div class="tab-content" id="file-decode-tab">
+        <div class="input-section">
+            <label for="base64ToFileInput" data-lang-key="label_b64_input">Base64 Input</label>
+            <textarea id="base64ToFileInput" placeholder="Paste Base64 string here to decode into a file..." data-lang-key="placeholder_b64_to_file" spellcheck="false"></textarea>
+        </div>
+        <div class="action-section">
+            <div class="button-group">
+                <button id="decodeFileBtn" class="primary-btn">
+                    <span data-lang-key="btn_decode_to_file">Decode to File</span>
+                     <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                        <polyline points="7 10 12 15 17 10"></polyline>
+                        <line x1="12" y1="15" x2="12" y2="3"></line>
+                    </svg>
+                </button>
+            </div>
+             <p class="info-text" data-lang-key="info_decode_to_file">Enter a Base64 string above. The tool will decode it and prompt you to download the resulting file. The file type will be generic, so you may need to add the correct extension (e.g., .jpg, .pdf) after downloading.</p>
+        </div>
+    </div>
+
+
+    <div class="tab-content" id="url-tab">
+      <div class="url-section">
+        <div class="url-tab-navigation">
+          <button class="url-tab active" data-url-tab="url-safe" data-lang-key="url_safe_base64_tab">URL-Safe Base64</button>
+          <button class="url-tab" data-url-tab="url-encode" data-lang-key="url_encoding_tab">URL Encoding</button>
+        </div>
+
+        <!-- URL-Safe Base64 Tab -->
+        <div class="url-tab-content active" id="url-safe-content">
+          <h3 data-lang-key="url_safe_title">URL-Safe Base64 Encoding</h3>
+          <p class="info-text" data-lang-key="url_safe_info">URL-safe Base64 replaces '+' with '-' and '/' with '_', and removes padding '=' characters.</p>
+          
+          <div class="input-section">
+            <label for="urlInput" data-lang-key="input">Input</label>
+            <textarea id="urlInput" placeholder="Enter text or URL-safe Base64 string..." data-lang-key="placeholder_url_input" spellcheck="false"></textarea>
+          </div>
+          
+          <div class="button-group">
+            <button id="urlEncodeBtn" class="primary-btn" data-lang-key="btn_encode_url_safe">Encode URL-Safe</button>
+            <button id="urlDecodeBtn" class="primary-btn" data-lang-key="btn_decode_url_safe">Decode URL-Safe</button>
+          </div>
+          
+          <div class="output-section">
+            <div class="section-header">
+              <label for="urlOutput" data-lang-key="output">Output</label>
+              <button class="icon-btn-text" id="copyUrlBtn">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                  <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+                </svg>
+                <span data-lang-key="copy">Copy</span>
+              </button>
+            </div>
+            <textarea id="urlOutput" readonly placeholder="URL-safe output will appear here..." data-lang-key="placeholder_url_output" spellcheck="false"></textarea>
+          </div>
+        </div>
+
+        <!-- URL Encoding Tab -->
+        <div class="url-tab-content" id="url-encode-content">
+          <h3 data-lang-key="url_encoding_title">URL Percent Encoding</h3>
+          <p class="info-text" data-lang-key="url_encoding_info">URL encoding converts special characters into percent-encoded format (e.g., space becomes %20).</p>
+          
+          <div class="input-section">
+            <label for="urlEncodeInput" data-lang-key="input">Input</label>
+            <textarea id="urlEncodeInput" placeholder="Enter text or URL to encode/decode..." data-lang-key="placeholder_url_encode_input" spellcheck="false"></textarea>
+          </div>
+          
+          <div class="button-group">
+            <button id="urlPercentEncodeBtn" class="primary-btn" data-lang-key="btn_url_encode">URL Encode</button>
+            <button id="urlPercentDecodeBtn" class="primary-btn" data-lang-key="btn_url_decode">URL Decode</button>
+          </div>
+          
+          <div class="output-section">
+            <div class="section-header">
+              <label for="urlEncodeOutput" data-lang-key="output">Output</label>
+              <button class="icon-btn-text" id="copyUrlEncodeBtn">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                  <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+                </svg>
+                <span data-lang-key="copy">Copy</span>
+              </button>
+            </div>
+            <textarea id="urlEncodeOutput" readonly placeholder="URL encoded output will appear here..." data-lang-key="placeholder_url_encode_output" spellcheck="false"></textarea>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="tab-content" id="hash-tab">
+      <div class="hash-section">
+        <h3 data-lang-key="hash_title">Hash Generator</h3>
+        <p class="info-text" data-lang-key="hash_info">Generate cryptographic hash values for text or files. Supports MD5, SHA-1, SHA-256, and SHA-512 algorithms.</p>
+        
+        <div class="input-section">
+          <label for="hashInput" data-lang-key="input">Input</label>
+          <textarea id="hashInput" placeholder="Enter text to hash..." data-lang-key="placeholder_hash_input" spellcheck="false"></textarea>
+        </div>
+        
+        <div class="action-section">
+          <div class="hash-options">
+            <div class="format-selector">
+              <label for="hashAlgorithm" data-lang-key="hash_algorithm">Hash Algorithm:</label>
+              <select id="hashAlgorithm">
+                <option value="SHA-256">SHA-256</option>
+                <option value="SHA-1">SHA-1</option>
+                <option value="SHA-512">SHA-512</option>
+                <option value="MD5" disabled>MD5 (Not supported in browsers)</option>
+              </select>
+            </div>
+          </div>
+          
+          <div class="button-group">
+            <button id="generateHashBtn" class="primary-btn" data-lang-key="btn_generate_hash">Generate Hash</button>
+            <button id="clearHashBtn" class="secondary-btn" data-lang-key="reset">Clear</button>
+          </div>
+        </div>
+        
+        <div class="output-section">
+          <div class="section-header">
+            <label for="hashOutput" data-lang-key="output">Output</label>
+            <button class="icon-btn-text" id="copyHashBtn">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+              </svg>
+              <span data-lang-key="copy">Copy</span>
+            </button>
+          </div>
+          <textarea id="hashOutput" readonly placeholder="Hash output will appear here..." data-lang-key="placeholder_hash_output" spellcheck="false"></textarea>
+        </div>
+      </div>
+    </div>
+
+    <div class="features">
+      <h2 data-lang-key="features_title">Why Choose Our Base64 Tool?</h2>
+      <div class="feature-grid">
+        <div class="feature-card">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+          </svg>
+          <h3 data-lang-key="feature_secure_title">100% Secure</h3>
+          <p data-lang-key="feature_secure_text">All conversions happen in your browser. No data is sent to any server.</p>
+        </div>
+        <div class="feature-card">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon>
+          </svg>
+          <h3 data-lang-key="feature_fast_title">Lightning Fast</h3>
+          <p data-lang-key="feature_fast_text">Instant encoding and decoding with live mode for real-time conversion.</p>
+        </div>
+        <div class="feature-card">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+            <polyline points="14 2 14 8 20 8"></polyline>
+          </svg>
+          <h3 data-lang-key="feature_file_title">File Support</h3>
+          <p data-lang-key="feature_file_text">Encode files to Base64 and decode Base64 back to files, all in your browser.</p>
+        </div>
+        <div class="feature-card">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path>
+            <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path>
+          </svg>
+          <h3 data-lang-key="feature_formats_title">Multiple Formats</h3>
+          <p data-lang-key="feature_formats_text">Supports Standard, URL-safe, and MIME Base64 specifications.</p>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <div class="settings-panel" id="settingsPanel">
+    <div class="settings-content">
+      <div class="settings-header">
+        <h3 data-lang-key="settings">Settings</h3>
+        <button class="close-btn" id="closeSettings">&times;</button>
+      </div>
+      
+      <div class="settings-body">
+        <div class="setting-group">
+          <h4 data-lang-key="general">General</h4>
+          <label class="setting-item">
+            <input type="checkbox" id="autoDetect" checked />
+            <span data-lang-key="auto_detect">Auto-detect input format</span>
+          </label>
+          <label class="setting-item">
+            <input type="checkbox" id="rememberInput" />
+            <span data-lang-key="remember_input">Remember input between sessions</span>
+          </label>
+          <label class="setting-item">
+            <input type="checkbox" id="showNotifications" checked />
+            <span data-lang-key="show_notifications">Show success/error notifications</span>
+          </label>
+        </div>
+        
+        <div class="setting-group">
+          <h4 data-lang-key="display">Display</h4>
+          <div class="setting-item">
+            <label for="fontSize" data-lang-key="font_size">Font Size:</label>
+            <select id="fontSize">
+              <option value="small" data-lang-key="font_small">Small</option>
+              <option value="medium" selected data-lang-key="font_medium">Medium</option>
+              <option value="large" data-lang-key="font_large">Large</option>
+            </select>
+          </div>
+          <label class="setting-item">
+            <input type="checkbox" id="wordWrap" checked />
+            <span data-lang-key="word_wrap">Word wrap by default</span>
+          </label>
+        </div>
+        
+        <div class="setting-group">
+          <h4 data-lang-key="encoding">Encoding</h4>
+          <div class="setting-item">
+            <label for="defaultBase64Format" data-lang-key="default_format">Default Base64 Format:</label>
+            <select id="defaultBase64Format">
+              <option value="standard" selected data-lang-key="format_standard">Standard (RFC 4648)</option>
+              <option value="mime" data-lang-key="format_mime">MIME (RFC 2045)</option>
+              <option value="url-safe" data-lang-key="format_url_safe">URL-Safe (RFC 4648)</option>
+            </select>
+          </div>
+        </div>
+      </div>
+
+      <div class="settings-footer">
+        <button class="secondary-btn" id="resetSettings" data-lang-key="reset_settings">Reset to Default</button>
+        <button class="primary-btn" id="saveSettings" data-lang-key="save_settings">Save Settings</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="overlay" id="overlay"></div>
+
+  <div class="modal" id="shortcutsModal">
+      <div class="modal-header">
+          <h3 data-lang-key="shortcuts_title">Keyboard Shortcuts</h3>
+          <button class="close-btn" id="closeShortcuts">&times;</button>
+      </div>
+      <div class="modal-body">
+          <div class="shortcut-item"><span data-lang-key="shortcut_encode">Encode Text</span><code>Ctrl + Enter</code></div>
+          <div class="shortcut-item"><span data-lang-key="shortcut_decode">Decode Text</span><code>Ctrl + Shift + Enter</code></div>
+          <div class="shortcut-item"><span data-lang-key="shortcut_swap">Swap Input/Output</span><code>Ctrl + Shift + S</code></div>
+          <div class="shortcut-item"><span data-lang-key="shortcut_clear">Clear All</span><code>Ctrl + K</code></div>
+          <div class="shortcut-item"><span data-lang-key="shortcut_settings">Open Settings</span><code>Ctrl + ,</code></div>
+          <div class="shortcut-item"><span data-lang-key="shortcut_close_modal">Close Modals / Exit Fullscreen</span><code>Esc</code></div>
+      </div>
+  </div>
+
+  <footer data-lang-key="footer_text">
+    <p>&copy; 2024 Base64 Tool. Free to use. For feedback or bug reports, please contact <a href="mailto:quatermain12@gmail.com" class="feedback-link" rel="noopener noreferrer">quatermain12@gmail.com</a>.</p>
+  </footer>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pako/2.1.0/pako.min.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>
