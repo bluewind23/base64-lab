@@ -1,9 +1,9 @@
 [[headers]]
-for = "/sitemap.xml"
-[headers.values]
+  for = "/sitemap.xml"
+  [headers.values]
     Content-Type = "application/xml"
 
-  [[headers]]
+[[headers]]
   for = "/robots.txt"
   [headers.values]
     Content-Type = "text/plain"
